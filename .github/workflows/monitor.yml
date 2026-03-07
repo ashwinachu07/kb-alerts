@@ -1,0 +1,31 @@
+name: KSRTC Seat Monitor
+
+on:
+  # Run every 5 minutes
+  schedule:
+    - cron: '*/5 * * * *'
+  # Also allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  check-seats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check seat availability
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          KSRTC_URL: ${{ vars.KSRTC_URL }}
+          TIME_FROM: ${{ vars.TIME_FROM }}
+          TIME_TO: ${{ vars.TIME_TO }}
+        run: node check.js
