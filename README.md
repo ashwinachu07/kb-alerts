@@ -42,3 +42,7 @@ To change the check frequency, edit `.github/workflows/monitor.yml` and change t
 
 ### Manual trigger
 You can also trigger a check manually: go to **Actions** tab → **KSRTC Seat Monitor** → **Run workflow**.
+
+## License
+
+© 2026 Ashwin. All Rights Reserved. This repository is made public strictly for portfolio viewing and recruiter evaluation; copying, modifying, or redistributing this code without explicit permission is prohibited.
